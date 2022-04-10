@@ -27,6 +27,7 @@ public class Lesson4Test {
                 .expectStatusCode(200)
                 .expectStatusLine("HTTP/1.1 200 OK")
                 .expectContentType(ContentType.JSON)
+                .log(LogDetail.ALL)
                 .build();
 
         RestAssured.responseSpecification = responseSpecification;
@@ -125,6 +126,7 @@ public class Lesson4Test {
                 .post("https://api.spoonacular.com/mealplanner/umashka1/shopping-list/items").prettyPeek()
                 .then()
                 .extract()
+                .response()
                 .body()
                 .as(AddToShoppingListResponse.class);
         assertThat(response.aisle, containsString("Baking"));

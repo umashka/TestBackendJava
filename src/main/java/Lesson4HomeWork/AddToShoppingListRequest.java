@@ -19,21 +19,9 @@ import java.util.List;
 @Data
 public class AddToShoppingListRequest {
     @JsonProperty("item")
-    private String item;
+    public String item;
     @JsonProperty("aisle")
-    private String aisle;
+    public String aisle;
     @JsonProperty("parse")
-    private Boolean parse;
-    @JsonIgnore
-    private Map<String, Object> additionalProperties = new HashMap<String, Object>();
-
-    @JsonAnyGetter
-    public Map<String, Object> getAdditionalProperties() {
-        return this.additionalProperties;
-    }
-
-    @JsonAnySetter
-    public void setAdditionalProperty(String name, Object value) {
-        this.additionalProperties.put(name, value);
-    }
+    public Boolean parse;
 }

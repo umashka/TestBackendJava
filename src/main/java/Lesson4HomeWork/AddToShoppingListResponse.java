@@ -1,5 +1,6 @@
 package Lesson4HomeWork;
 
+import java.util.ArrayList;
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -28,9 +29,9 @@ public class AddToShoppingListResponse {
     @JsonProperty("measures")
     public Measures measures;
     @JsonProperty("usages")
-    public List<Object> usages = null;
+    public List<Object> usages = new ArrayList<Object>();
     @JsonProperty("usageRecipeIds")
-    public List<Object> usageRecipeIds = null;
+    public List<Object> usageRecipeIds = new ArrayList<Object>();
     @JsonProperty("pantryItem")
     public Boolean pantryItem;
     @JsonProperty("aisle")
@@ -39,4 +40,67 @@ public class AddToShoppingListResponse {
     public Double cost;
     @JsonProperty("ingredientId")
     public Integer ingredientId;
+
+
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    @JsonPropertyOrder({
+            "original",
+            "metric",
+            "us"
+    })
+    @Data
+    public static class Measures {
+
+        @JsonProperty("original")
+        public Original original;
+        @JsonProperty("metric")
+        public Metric metric;
+        @JsonProperty("us")
+        public Us us;
+
+        @JsonInclude(JsonInclude.Include.NON_NULL)
+        @JsonPropertyOrder({
+                "amount",
+                "unit"
+        })
+        @Data
+        public static class Original {
+
+            @JsonProperty("amount")
+            public Double amount;
+            @JsonProperty("unit")
+            public String unit;
+
+        }
+
+        @JsonInclude(JsonInclude.Include.NON_NULL)
+        @JsonPropertyOrder({
+                "amount",
+                "unit"
+        })
+        @Data
+        public static class Metric {
+
+            @JsonProperty("amount")
+            public Double amount;
+            @JsonProperty("unit")
+            public String unit;
+
+        }
+
+        @JsonInclude(JsonInclude.Include.NON_NULL)
+        @JsonPropertyOrder({
+                "amount",
+                "unit"
+        })
+        @Data
+        public static class Us {
+
+            @JsonProperty("amount")
+            public Double amount;
+            @JsonProperty("unit")
+            public String unit;
+
+        }
+    }
 }
